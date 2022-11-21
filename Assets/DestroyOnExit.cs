@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class DestroyOnExit : StateMachineBehaviour
 {
+    public static float deathLength;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        deathLength = stateInfo.length;
         Destroy(animator.gameObject, stateInfo.length);
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

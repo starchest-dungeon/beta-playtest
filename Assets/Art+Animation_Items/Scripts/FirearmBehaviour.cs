@@ -7,6 +7,8 @@ public class FirearmBehaviour : MonoBehaviour {
     private SpriteRenderer myRender;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public Animator muzzle;
+    public Animator fireArm;
 
     private float bulletSpeed = 40f;
     private float cooldown = 0.2f;
@@ -30,6 +32,8 @@ public class FirearmBehaviour : MonoBehaviour {
 
     private void ProcessBulletSpawn() {
         if (Input.GetMouseButtonDown(0) && Time.time > nextFire) {
+            muzzle.SetTrigger(name:"shoot");
+            fireArm.SetTrigger(name:"shoot");
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody2D re = bullet.GetComponent<Rigidbody2D>();
             re.velocity = firePoint.up * bulletSpeed;

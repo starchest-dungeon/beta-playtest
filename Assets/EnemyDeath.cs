@@ -19,7 +19,7 @@ public class EnemyDeath : MonoBehaviour {
                 Debug.Log("dies");
                 player.kills++;
                 totalKills.text = "Kills: " + player.kills;
-                Destroy(gameObject, 2);
+                Destroy(gameObject, 0.5f);
             } else {
                 health--;
             }
