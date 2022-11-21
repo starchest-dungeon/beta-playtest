@@ -20,12 +20,23 @@ public class ProtagonistBehaviour : MonoBehaviour {
 
     public Animator backAnim;
     public GameObject back;
+
+    //from: https://www.youtube.com/watch?v=tH57EInEb58
+
+    private float activeMoveSpeed;
+    public float dashSpeed;
+
+    public float dashLength = 0.5f, dashCooldown = 1f;
+
+    private float dashCounter;
+    private float dashCoolCounter;
  
     void Start() {
         m_Rb = this.GetComponent<Rigidbody2D>();
         front.GetComponent<Renderer>().enabled= false;
         back.GetComponent<Renderer>().enabled= false;
         side.GetComponent<Renderer>().enabled= true;
+        activeMoveSpeed = speed;
     }
  
     void Update() {
@@ -76,7 +87,27 @@ public class ProtagonistBehaviour : MonoBehaviour {
             Player.damageTaken = false;
         }
 
-        moveAmount = moveInput.normalized * speed;
+        moveAmount = moveInput.normalized * activeMoveSpeed;
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (dashCoolCounter <= 0 && dashCounter <= 0) {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
+        }
+
+        if (dashCounter > 0) {
+            dashCounter -= Time.deltaTime;
+
+            if (dashCounter <= 0) {
+                activeMoveSpeed = speed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if (dashCoolCounter > 0) {
+            dashCoolCounter -= Time.deltaTime;
+        }
     }
  
     private void FixedUpdate() {
