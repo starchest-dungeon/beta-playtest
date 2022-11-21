@@ -21,6 +21,7 @@ public class EnemyDeath : MonoBehaviour {
                 totalKills.text = "Kills: " + player.kills;
                 Destroy(gameObject, 0.5f);
             } else {
+                anim.SetTrigger("hit");
                 health--;
             }
 
