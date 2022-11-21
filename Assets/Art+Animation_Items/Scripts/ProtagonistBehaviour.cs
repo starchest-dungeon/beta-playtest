@@ -64,6 +64,17 @@ public class ProtagonistBehaviour : MonoBehaviour {
             back.GetComponent<Renderer>().enabled= false;
         }
 
+        if (Player.damageTaken) {
+            if (Input.GetAxisRaw("Horizontal") != 0) {
+                sideAnim.SetTrigger(name:"hit");
+            } else if (Input.GetAxisRaw("Vertical") > 0) {
+                backAnim.SetTrigger(name:"hit");
+            } else if (Input.GetAxisRaw("Vertical") < 0) {
+                frontAnim.SetTrigger(name:"hit");
+            }
+
+            Player.damageTaken = false;
+        }
 
         moveAmount = moveInput.normalized * speed;
     }

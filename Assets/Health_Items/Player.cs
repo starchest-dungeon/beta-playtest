@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public int currentHealth;
     public int kills = 0;
 
+    public static bool damageTaken;
+
     public HealthBar healthBar;
 
     public GameOverScreen GameOverScreen;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage) 
     {
         //Debug.Log("In taking damage");
+        damageTaken = true;
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         //ZeldaHealthBar.instance.RemoveHearts(damage);
