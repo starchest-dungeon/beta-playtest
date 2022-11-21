@@ -23,12 +23,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            TakeDamage(1);
-        }
-        */
         if (currentHealth <= 0) 
         {
             GameOver();
@@ -57,5 +51,10 @@ public class Player : MonoBehaviour
 
     public void Victory() {
         VictoryScreen.SetUp();
+    }
+
+    public void Heal(int heal) {
+        currentHealth += heal;
+        healthBar.SetHealth(currentHealth);
     }
 }
