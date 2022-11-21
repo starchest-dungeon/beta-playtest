@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBehaviourScript : MonoBehaviour {
 
-    int health = 20;
+    int health = 30;
     public Animator anim;
     public Player player;
     public Transform player2;
@@ -22,14 +22,12 @@ public class BossBehaviourScript : MonoBehaviour {
             if (health <= 0) {
                 //anim.SetTrigger("Dying");
                 Debug.Log("dies");
-                //player.kills++;
-                //totalKills.text = "Kills: " + player.kills;
                 Destroy(gameObject, 0.5f);
+                player.Victory();
             } else {
                 anim.SetTrigger("hit");
                 health--;
             }
-
         }
 
     }
@@ -50,7 +48,7 @@ public class BossBehaviourScript : MonoBehaviour {
         //totalKills.text = "Kills: " + player.kills;
     }
 
-        void FixedUpdate()
+    void FixedUpdate()
     {
         if (inRange)
         {

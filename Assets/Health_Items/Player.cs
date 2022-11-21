@@ -31,10 +31,10 @@ public class Player : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (kills == 15) {
-            Victory();
-            gameObject.SetActive(false);
-        }
+        // if (kills == 15) {
+        //     Victory();
+        //     gameObject.SetActive(false);
+        // }
     }
 
     public void TakeDamage(int damage) 
@@ -50,10 +50,13 @@ public class Player : MonoBehaviour
     public void GameOver() 
     {
         GameOverScreen.SetUp();
+        gameObject.SetActive(false);
     }
 
     public void Victory() {
         VictoryScreen.SetUp();
+        gameObject.SetActive(false);
+
     }
 
     public void Heal(int heal) {
